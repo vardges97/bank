@@ -11,12 +11,34 @@ class Bank_Account:
         self.accounts = {}
         print("Hello!!! Welcome to the Deposit & Withdrawal Machine")
 
+    def welcome_screen(self):
+        while True:
+            print("to create an account press 1\n"
+              "to deposit to an account press 2\n"
+              "to withdraw from n account press 3\n"
+              "to transfer between accounts press 4\n"
+              "to check the balance press 5\n"
+              "to exit press 0\n")
+
+            welcome_screen_select = str(input())
+            if welcome_screen_select == "1":
+                self.create_account()
+            if welcome_screen_select == "2":
+                self.deposit()
+            if welcome_screen_select == "3":
+                self.withdraw()
+            if welcome_screen_select == "4":
+                self.transfer()
+            if welcome_screen_select == "5":
+                self.display()
+            if welcome_screen_select == "0":
+                print("Goodbye")
+                break
+
     def create_account(self):
         name = input("enter your name: ")
         balance = float(input("Enter amount to be deposited: "))
-        #self.balance += amount
-        #self.name += name
-        self.accounts.update({name.balance})
+        self.accounts.update({name:balance})
         print("\n new account created:",name ,"\n with balance of: " ,balance)
 
     def deposit(self):
@@ -59,13 +81,11 @@ class Bank_Account:
             raise Incuficcientfunds("you dont have enough funds to complete the transfer.")
         self.accounts[user1] -= amount
         self.accounts[user2] += amount
+        print("transfer from:",user1," for: ",amount,"to :",user2)
         print("transfer completed successfully.")
 
     def display(self):
         print("\n Net Available Balance= ", self.accounts)
 
-s = Bank_Account()
-
-s.create_account()
-s.deposit()
-s.withdraw()
+x= Bank_Account()
+print(x.welcome_screen())
